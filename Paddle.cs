@@ -9,16 +9,6 @@ public partial class Paddle : CharacterBody2D
 	[Export] public string downAction = "p1_down";
 	[Export] public bool isPlayer = true;
 
-	public override void _Ready()
-	{
-		var shape = GetNode<CollisionShape2D>("CollisionShape2D");
-		var rect = shape.Shape as RectangleShape2D;
-		if (rect != null)
-		{
-			size = rect.Size;
-		}
-	}
-
 	public override void _PhysicsProcess(double delta)
 	{
 		if (isPlayer)
@@ -29,10 +19,13 @@ public partial class Paddle : CharacterBody2D
 
 		MoveAndSlide();
 
+		// Clamp position inside playfield bounds
 		var viewport = GetViewportRect();
 		float halfHeight = size.Y * 0.5f;
 
+		// Limit top and bottom movement
 		float clampedY = Mathf.Clamp(Position.Y, halfHeight, viewport.Size.Y - halfHeight);
 		Position = new Vector2(Position.X, clampedY);
 	}
+
 }

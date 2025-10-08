@@ -20,6 +20,12 @@ public partial class Pong : Node2D
 
 	public override void _Ready()
 	{
+		var camera = GetNode<Camera2D>("MainCamera");
+		camera.MakeCurrent(); // activates this camera
+
+		// Optional: center the camera on the playfield
+		camera.Position = GetViewportRect().Size / 2;
+
 		leftPaddle = GetNode<Paddle>("PaddleLeft");
 		rightPaddle = GetNode<Paddle>("PaddleRight");
 		ball = GetNode<Ball>("Ball");

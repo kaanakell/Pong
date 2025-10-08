@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://cu4eljnwmp0d" path="res://Ball.cs" id="2_2fpx0"]
 [ext_resource type="Texture2D" uid="uid://ypkqwxt4t8jx" path="res://circle.png" id="4_8ypyn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rsmpk"]
-size = Vector2(24, 28.4444)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hultk"]
+custom_solver_bias = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ofbcb"]
-size = Vector2(24, 29)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6v0xx"]
+custom_solver_bias = 1.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dsgnr"]
 
@@ -18,15 +18,20 @@ script = ExtResource("1_dsgnr")
 
 [node name="MainCamera" type="Camera2D" parent="."]
 enabled = false
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
 
 [node name="PaddleLeft" type="CharacterBody2D" parent="."]
 position = Vector2(-528, 0)
 script = ExtResource("1_ofbcb")
+size = Vector2(32, 200)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PaddleLeft"]
 position = Vector2(-4, 0)
-scale = Vector2(1, 9)
-shape = SubResource("RectangleShape2D_rsmpk")
+scale = Vector2(1, 9.58507)
+shape = SubResource("RectangleShape2D_hultk")
 
 [node name="Visual" type="ColorRect" parent="PaddleLeft/CollisionShape2D"]
 offset_left = -8.0
@@ -35,14 +40,15 @@ offset_right = 8.0
 offset_bottom = 10.1049
 
 [node name="PaddleRight" type="CharacterBody2D" parent="."]
-position = Vector2(539, 0)
+position = Vector2(528, 0)
 script = ExtResource("1_ofbcb")
+size = Vector2(32, 200)
 isPlayer = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PaddleRight"]
 position = Vector2(0.999939, -2.5)
 scale = Vector2(1, 9)
-shape = SubResource("RectangleShape2D_ofbcb")
+shape = SubResource("RectangleShape2D_6v0xx")
 
 [node name="Visual" type="ColorRect" parent="PaddleRight/CollisionShape2D"]
 offset_left = -9.35553
@@ -51,15 +57,15 @@ offset_right = 7.64447
 offset_bottom = 10.0556
 
 [node name="Ball" type="Node2D" parent="."]
-scale = Vector2(2, 2)
 script = ExtResource("2_2fpx0")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="Ball"]
+[node name="Area2D" type="Area2D" parent="Ball"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/RigidBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ball/Area2D"]
+scale = Vector2(2, 2)
 shape = SubResource("CircleShape2D_dsgnr")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ball/RigidBody2D/CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Ball/Area2D/CollisionShape2D"]
 position = Vector2(-8.82149e-06, 0)
 scale = Vector2(0.0390625, 0.0410156)
 texture = ExtResource("4_8ypyn")
