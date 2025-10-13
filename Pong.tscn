@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bo3dpiksd47hi"]
+[gd_scene load_steps=9 format=3 uid="uid://bo3dpiksd47hi"]
 
 [ext_resource type="Script" uid="uid://bemqfqvl1n2hw" path="res://Pong.cs" id="1_dsgnr"]
 [ext_resource type="Script" uid="uid://dywt1furs2hao" path="res://Paddle.cs" id="1_ofbcb"]
 [ext_resource type="Script" uid="uid://cu4eljnwmp0d" path="res://Ball.cs" id="2_2fpx0"]
 [ext_resource type="Texture2D" uid="uid://ypkqwxt4t8jx" path="res://circle.png" id="4_8ypyn"]
+[ext_resource type="PackedScene" uid="uid://ckkpjvs4axu5s" path="res://sounds.tscn" id="5_hultk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hultk"]
 custom_solver_bias = 1.0
@@ -17,9 +18,7 @@ custom_solver_bias = 1.0
 script = ExtResource("1_dsgnr")
 
 [node name="MainCamera" type="Camera2D" parent="."]
-enabled = false
-limit_smoothed = true
-position_smoothing_enabled = true
+process_mode = 3
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
@@ -106,3 +105,5 @@ metadata/_edit_use_anchors_ = true
 [node name="ServeTimer" type="Timer" parent="."]
 wait_time = 0.5
 one_shot = true
+
+[node name="SoundManager" parent="." instance=ExtResource("5_hultk")]

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ckkpjvs4axu5s"]
+
+[ext_resource type="Script" uid="uid://ceudxblhwab0t" path="res://SoundManager.cs" id="1_npmcl"]
+[ext_resource type="AudioStream" uid="uid://yrfmvrebnavd" path="res://Sounds/PongWallSound.wav" id="1_vknln"]
+[ext_resource type="AudioStream" uid="uid://dop1sjyxvka31" path="res://Sounds/PongPaddleSound.wav" id="2_npmcl"]
+[ext_resource type="AudioStream" uid="uid://b2j28gxdpl2ou" path="res://Sounds/PongScoreSound.wav" id="3_pkgfr"]
+
+[node name="Sounds" type="Node2D"]
+script = ExtResource("1_npmcl")
+
+[node name="AudioWall" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_vknln")
+
+[node name="AudioPaddle" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_npmcl")
+
+[node name="AudioScore" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pkgfr")
